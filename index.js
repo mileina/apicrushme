@@ -29,9 +29,17 @@ app.post('/api/invitation', (req, res) => {
 });
 
 
-app.get('/api/invitations', (req, res) => {
-    res.status(200).json(invitations);
+app.get('/api/invitation/:id', (req, res) => {
+    const { id } = req.params;
+    const invitation = invitations.find(inv => inv.id === id);
+
+    if (invitation) {
+        res.status(200).json(invitation);
+    } else {
+        res.status(404).send('Invitation non trouvée');
+    }
 });
+
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
