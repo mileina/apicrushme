@@ -4,10 +4,17 @@ const cors = require('cors');
 const { v4: uuidv4 } = require('uuid');
 
 const app = express();
-app.use(bodyParser.json());
-app.use(cors());
 
-// Simuler une base de données en mémoidre
+// Configuration CORS
+const corsOptions = {
+  origin: ['http://localhost:3000', 'https://crushmoi-b78956e48bb4.herokuapp.com'],
+  optionsSuccessStatus: 200,
+};
+
+app.use(cors(corsOptions));
+app.use(bodyParser.json());
+
+// Simuler une base de données en mémoire
 let invitations = [];
 
 app.post('/api/invitation', (req, res) => {
