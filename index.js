@@ -5,28 +5,10 @@ const cors = require('cors');
 const { v4: uuidv4 } = require('uuid');
 
 const app = express();
-app.post('/api/invitation', (req, res) => {
-  const { id, email, date, messageOui, messageNon } = req.body;
-  console.log('Receiving data:', req.body);
-
-  // Reste du code pour insérer dans la base de données...
-
-  db.query(query, [id, email, date, messageOui, messageNon], (err, result) => {
-      if (err) {
-          console.error('Database error:', err);
-          res.status(500).json({ error: 'Error saving data' });
-      } else {
-          console.log('Data inserted successfully');
-          res.json({ message: 'Invitation saved', id });
-      }
-  });
-});
-
 app.use((req, res, next) => {
-    res.setHeader('Content-Security-Policy', "default-src 'self'; font-src 'https://fonts.googleapis.com' 'https://fonts.gstatic.com'; style-src 'https://fonts.googleapis.com' 'unsafe-inline';");
-    return next();
-  });
-  
+  res.setHeader('Content-Security-Policy', "default-src 'self'; font-src 'https://fonts.googleapis.com' 'https://fonts.gstatic.com'; style-src 'https://fonts.googleapis.com' 'unsafe-inline';");
+  return next();
+});
 // Configuration CORS
 const corsOptions = {
   origin: ['http://localhost:3000', 'https://crushmoi-b78956e48bb4.herokuapp.com'],
