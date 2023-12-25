@@ -1,3 +1,4 @@
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
@@ -5,6 +6,11 @@ const { v4: uuidv4 } = require('uuid');
 
 const app = express();
 
+app.use((req, res, next) => {
+    res.setHeader('Content-Security-Policy', "default-src 'self'; font-src 'https://fonts.googleapis.com' 'https://fonts.gstatic.com'; style-src 'https://fonts.googleapis.com' 'unsafe-inline';");
+    return next();
+  });
+  
 // Configuration CORS
 const corsOptions = {
   origin: ['http://localhost:3000', 'https://crushmoi-b78956e48bb4.herokuapp.com'],
