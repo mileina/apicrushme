@@ -14,7 +14,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
 
-// Simuler une base de données en mémoire
+
 let invitations = [];
 
 app.post('/api/invitation', (req, res) => {
@@ -24,7 +24,7 @@ app.post('/api/invitation', (req, res) => {
     res.status(201).json({ id: id });
 });
 
-// Pour récupérer les invitations (si nécessaire)
+
 app.get('/api/invitations', (req, res) => {
     res.status(200).json(invitations);
 });
